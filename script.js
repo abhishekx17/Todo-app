@@ -6,6 +6,27 @@ const progress = document.getElementById("progress");
 let celebrationAudio = document.getElementById("celebrationAudio");
 
 let celebrationPlayed = false;
+
+// Local Storage Logic
+const saveTodos = () => {
+  let todos = [];
+  todoList.querySelectorAll("li").forEach((li) => {
+    todos.push({
+      text: li.querySelector(".task").textContent,
+      completed: li.querySelector("input").checked,
+    });
+  });
+  localStorage.setItem("todos", JSON.stringify(todos));
+};
+
+const loadTodos = () => {
+  let todos = JSON.parse(localStorage.getItem("todos")) || [];
+  todoList.innerHTML = "";
+  todos.forEach(todo => createTodo(todo.text, todo.completed));
+  updateStats();
+};
+
+
 // Function to update stats + progress bar
 const updateStats = () => {
   let total = todoList.children.length;
@@ -29,7 +50,6 @@ const updateStats = () => {
         celebrationPlayed = true;
       }
     } else {
-      // tasks undone → reset
       celebrationAudio.pause();
       celebrationAudio.currentTime = 0;
       celebrationPlayed = false;
@@ -37,15 +57,13 @@ const updateStats = () => {
   }
 };
 
-const addTodo = () => {
-  const inputText = inputBox.value.trim();
-  if (inputText.length <= 0) return;
-
+// Function to create a todo item
+const createTodo = (text, completed = false) => {
   let li = document.createElement("li");
   li.innerHTML = `
     <div class="left">
-      <input type="checkbox">
-      <span class="task">${inputText}</span>
+      <input type="checkbox" ${completed ? "checked" : ""}>
+      <span class="task">${text}</span>
     </div>
     <div class="actions">
       <img src="img/edit.png" class="edit" alt="edit">
@@ -53,53 +71,66 @@ const addTodo = () => {
     </div>
   `;
 
+  const checkbox = li.querySelector("input");
+  const span = li.querySelector("span");
+
+  if (completed) {
+    span.style.textDecoration = "line-through";
+    span.style.color = "red";
+  }
+
   // Delete
   li.querySelector(".delete").onclick = () => {
     li.remove();
     updateStats();
+    saveTodos();
   };
 
   // Edit
   li.querySelector(".edit").onclick = () => {
-    let newText = prompt("Edit task:", li.querySelector("span").textContent);
-    if (newText) li.querySelector("span").textContent = newText;
+    let newText = prompt("Edit task:", span.textContent);
+    if (newText) {
+      span.textContent = newText;
+      saveTodos();
+    }
   };
 
   // Checkbox toggle
-  li.querySelector("input[type='checkbox']").onchange = () => {
-    let span = li.querySelector("span");
-    if (li.querySelector("input").checked) {
+  checkbox.onchange = () => {
+    if (checkbox.checked) {
       span.style.textDecoration = "line-through";
-      span.style.color = "gray";
+      span.style.color = "red";
     } else {
       span.style.textDecoration = "none";
       span.style.color = "black";
     }
     updateStats();
+    saveTodos();
   };
 
   todoList.appendChild(li);
-  inputBox.value = "";
-  inputBox.focus();
-
-  updateStats(); // Update after adding
 };
 
-// Add button
-addBtn.addEventListener("click", addTodo);
+// Add new todo
+const addTodo = () => {
+  const inputText = inputBox.value.trim();
+  if (inputText.length <= 0) return;
+  createTodo(inputText, false);
+  inputBox.value = "";
+  inputBox.focus();
+  updateStats();
+  saveTodos();
+};
 
-// Enter key support
+addBtn.addEventListener("click", addTodo);
 inputBox.addEventListener("keypress", (e) => {
   if (e.key === "Enter") addTodo();
 });
 
-
 // effects
 const winningEffect = () => {
   const count = 200,
-    defaults = {
-      origin: { y: 0.7 },
-    };
+    defaults = { origin: { y: 0.7 } };
 
   function fire(particleRatio, opts) {
     confetti(
@@ -109,30 +140,12 @@ const winningEffect = () => {
     );
   }
 
-  fire(0.25, {
-    spread: 26,
-    startVelocity: 55,
-  });
+  fire(0.25, { spread: 26, startVelocity: 55 });
+  fire(0.2, { spread: 60 });
+  fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+  fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+  fire(0.1, { spread: 120, startVelocity: 45 });
+};
 
-  fire(0.2, {
-    spread: 60,
-  });
-
-  fire(0.35, {
-    spread: 100,
-    decay: 0.91,
-    scalar: 0.8,
-  });
-
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 25,
-    decay: 0.92,
-    scalar: 1.2,
-  });
-
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 45,
-  });
-}
+// Load todos on start
+loadTodos();
