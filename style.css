@@ -1,0 +1,189 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0B1D17;
+    color: #F1FAEE;
+}
+
+.container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 120px auto 0 auto;
+    max-width: 500px;
+}
+
+.stats-container {
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #193C2F;
+    gap: 50px;
+}
+
+.details {
+    width: 100%;
+    text-align: start;
+}
+
+.details p {
+    padding: 8px;
+}
+
+#progressBar {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    background-color: #262626;
+}
+
+#progress {
+    width: 0%;
+    height: 10px;
+    background: #52B788;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#numbers {
+    width: 100px;
+    height: 100px;
+    background-color: #262626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.input-area {
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+}
+
+input {
+    width: 350px;
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    font-size: 18px;
+    background-color: #ffffffbb;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex: 1;
+}
+
+
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #88E0EF;
+    transition: all 0.3s ease;
+}
+
+.todoList {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin: 40px auto;
+}
+
+.todoList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffffbb;
+    color: black;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+}
+
+
+.todoList li .left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.todoList input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.todoList .task {
+    font-size: 16px;
+    max-height: 60px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    word-break: break-word;
+    line-height: 1.5;
+    padding: 10px;
+}
+
+.task::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.todoList input[type="checkbox"]:checked+.task {
+    text-decoration: line-through;
+    color: #e01b1b;
+}
+
+.actions {
+    display: flex;
+    gap: 30px;
+    flex-shrink: 0;
+}
+
+.actions img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+.actions img:hover {
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+
+
+#celebrationVideo {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
