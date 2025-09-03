@@ -99,7 +99,7 @@ const createTodo = (text, completed = false) => {
   checkbox.onchange = () => {
     if (checkbox.checked) {
       span.style.textDecoration = "line-through";
-      span.style.color = "red";
+      span.style.color = "gray";
     } else {
       span.style.textDecoration = "none";
       span.style.color = "black";

@@ -6,8 +6,8 @@
 }
 
 body {
-    background: #0B1D17;
-    color: #F1FAEE;
+    background: #fff;
+    color: #111;
 }
 
 .container {
@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background: #193C2F;
+    background: rgb(205, 204, 204);
     gap: 50px;
 }
 
@@ -44,13 +44,13 @@ body {
     height: 10px;
     border-radius: 10px;
     margin-top: 20px;
-    background-color: #262626;
+    background-color: #8f8f8f;
 }
 
 #progress {
     width: 0%;
     height: 10px;
-    background: #52B788;
+    background: #494a49;
     border-radius: 10px;
     transition: all 0.3s ease;
 }
@@ -58,7 +58,7 @@ body {
 #numbers {
     width: 100px;
     height: 100px;
-    background-color: #262626;
+    background-color: #878686;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,11 +71,13 @@ body {
     margin-top: 60px;
     width: 100%;
     display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 input {
-    width: 350px;
     height: 50px;
+    min-width: 0;
     border-radius: 30px;
     border: none;
     outline: none;
@@ -89,6 +91,7 @@ input {
 
 
 button {
+    flex-shrink: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -102,7 +105,7 @@ button {
 }
 
 button:hover {
-    background: #88E0EF;
+    background: #878686;
     transition: all 0.3s ease;
 }
 
@@ -123,9 +126,17 @@ button:hover {
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 30px;
-    margin-bottom: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
 }
 
+
+.todoList li:hover {
+    background: #dad8d8e0;
+    color: white;
+    transition: all 0.3s ease;
+}
 
 .todoList li .left {
     display: flex;
