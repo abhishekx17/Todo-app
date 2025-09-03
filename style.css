@@ -8,6 +8,7 @@
 body {
     background: #fff;
     color: #111;
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -30,6 +31,12 @@ body {
     gap: 50px;
 }
 
+.dark-theme .stats-container {
+    background: #333;
+    color: #fff;
+}
+
+
 .details {
     width: 100%;
     text-align: start;
@@ -47,12 +54,20 @@ body {
     background-color: #8f8f8f;
 }
 
+.dark-theme .progressBar {
+    background-color: #101010;
+}
+
 #progress {
     width: 0%;
     height: 10px;
     background: #494a49;
     border-radius: 10px;
     transition: all 0.3s ease;
+}
+
+.dark-theme #progress {
+    background: #fff;
 }
 
 #numbers {
@@ -65,6 +80,11 @@ body {
     border-radius: 50%;
     font-size: 30px;
     font-weight: 600;
+}
+
+.dark-theme #numbers {
+    background-color: #555;
+    color: #fff;
 }
 
 .input-area {
@@ -88,6 +108,11 @@ input {
     flex: 1;
 }
 
+.dark-theme input {
+    background-color: #333;
+    color: #fff;
+}
+
 
 
 button {
@@ -102,6 +127,11 @@ button {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.dark-theme button {
+    background: #555;
+    color: #fff;
 }
 
 button:hover {
@@ -131,10 +161,21 @@ button:hover {
     transition: all 0.3s ease;
 }
 
+.dark-theme .todoList li {
+    background: #333;
+    color: #fff;
+}
+
 
 .todoList li:hover {
     background: #dad8d8e0;
     color: white;
+    transition: all 0.3s ease;
+}
+
+.dark-theme .todoList li:hover {
+    background: #444;
+    color: #fff;
     transition: all 0.3s ease;
 }
 
@@ -197,4 +238,26 @@ button:hover {
     margin-top: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme {
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: #666;
 }

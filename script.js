@@ -147,5 +147,18 @@ const winningEffect = () => {
   fire(0.1, { spread: 120, startVelocity: 45 });
 };
 
+
+ const themeBtn = document.getElementById("themeBtn");
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme");
+
+  if (document.body.classList.contains("dark-theme")) {
+    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>'; // ☀️ icon
+  } else {
+    themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>'; // 🌙 icon
+  }
+});
+
+
 // Load todos on start
 loadTodos();
